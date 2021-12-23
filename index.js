@@ -1,5 +1,6 @@
 const bodyparser = require('body-parser');
-var fs = require('fs') // this engine requires the fs module
+
+const tableData = require('./tableData.json');
 
 const express = require('express')
 const app = express()
@@ -36,19 +37,21 @@ app.post('/case/overzicht-bgk', (req, res) => {
 app.get('/get_stuff', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
 
-  const tableData = getJson('tableData.json');
   res.status(200).send(tableData)
 
+})
+
+app.get('/get_chunk', (req, res) => {
+  const n = Number(req.query['n'])
+  const i = Number(req.query['i'])
+  console.log('chunk size', n)
+  console.log('chunk index', i)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
+  res.status(200).send(tableData.slice(n * i, n * (i + 1)))
 
 })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-
-
-const getJson = (file) => {
-
-  let rawdata = fs.readFileSync(file);
-  return JSON.parse(rawdata);
-}
