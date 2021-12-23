@@ -1,0 +1,44 @@
+{
+    "content": [
+        {
+            "instelling": "instelling TTXX",
+            "referentie": "myRef1",
+            "zaaknummer": "12345",
+            "medewerker": null,
+            "erkend": "100%",
+            "type": "Std",
+            "totaalBgkGedeclareerd": 200.99,
+            "debiteurenSaldo": 2000.55
+        },
+        {
+            "instelling": "instelling Y",
+            "referentie": "myRef2",
+            "zaaknummer": "5555",
+            "medewerker": null,
+            "erkend": "100%",
+            "type": "Std",
+            "totaalBgkGedeclareerd": 5200.99,
+            "debiteurenSaldo": 1000.55
+        },
+        {
+            "instelling": "instelling Y",
+            "referentie": "myRef3",
+            "zaaknummer": "8888",
+            "medewerker": null,
+            "erkend": "100%",
+            "type": "Std",
+            "totaalBgkGedeclareerd": 3200.99,
+            "debiteurenSaldo": 3000.55
+        },
+        {
+            "instelling": "instelling X",
+            "referentie": "myRef4",
+            "zaaknummer": "12388",
+            "medewerker": null,
+            "erkend": "100%",
+            "type": "Std",
+            "totaalBgkGedeclareerd": 200.99,
+            "debiteurenSaldo": 4000.55
+        }
+    ]
+}
