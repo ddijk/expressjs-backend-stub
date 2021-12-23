@@ -20,19 +20,35 @@ app.options('/case/overzicht-bgk', (req, res) => {
   res.sendStatus(200);
 })
 
+
 app.post('/case/overzicht-bgk', (req, res) => {
   console.log('body', req.body);
 
   console.log('headers', req.headers)
 
-  let rawdata = fs.readFileSync('bgk.json');
-  let bgkData = JSON.parse(rawdata);
 
+  const bgkData = getJson('bgk.json');
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.status(200).send(bgkData)
+
+})
+
+app.get('/get_stuff', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
+  const tableData = getJson('tableData.json');
+  res.status(200).send(tableData)
+
 
 })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+const getJson = (file) => {
+
+  let rawdata = fs.readFileSync(file);
+  return JSON.parse(rawdata);
+}
