@@ -55,7 +55,7 @@ app.get('/get_chunk', (req, res) => {
   console.log('chunk index', i)
   res.setHeader('Access-Control-Allow-Origin', '*')
 
-  res.status(200).send({ "chunk_index": i, "chunk_size": n, "content" : tableData.slice(n * i, n * (i + 1))})
+  res.status(200).send({"total_size": tableData.length, "chunk_index": i, "chunk_size": n, "content" : tableData.slice(n * i, n * (i + 1))})
 
 })
 
