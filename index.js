@@ -44,7 +44,7 @@ app.get('/get_stuff', (req, res) => {
 app.get('/get_total_size', (req, res) => {
 
 
-  const total = { "total": tableData.length}
+  const total = { "total": tableData.length }
   res.status(200).send(total)
 })
 
@@ -55,7 +55,9 @@ app.get('/get_chunk', (req, res) => {
   console.log('chunk index', i)
   res.setHeader('Access-Control-Allow-Origin', '*')
 
-  res.status(200).send({"total_size": tableData.length, "chunk_index": i, "chunk_size": n, "content" : tableData.slice(n * i, n * (i + 1))})
+  setTimeout((() => {
+    res.status(200).send({ "total_size": tableData.length, "chunk_index": i, "chunk_size": n, "content": tableData.slice(n * i, n * (i + 1)) })
+  }), 2000)
 
 })
 
