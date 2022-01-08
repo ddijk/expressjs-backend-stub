@@ -1,0 +1,91 @@
+{
+    "content": [
+        {
+            "caseId": 2911,
+            "medewerker": "B. Hooiveld",
+            "name": "Rammo, N. Verkeersongeval 20114693",
+            "erkend": 100,
+            "type": "BET STD",
+            "referentie": "_(1)_@_(2)_RECHTSTREEKS_(3)_@_(4)_ERKEND_///_(a)_@_(b)_@_(c)_@_(d)_MVDB//37_(e)_@_(f)_@",
+            "zaaknummer": "19550485",
+            "nawWederpartij": {
+                "instantie": "ASR Schadeverzekeringen N.V.",
+                "naam": "bram",
+                "plaats": " UTRECHT ",
+                "postbusAndOrPostcode": "  3584 BA "
+            },
+            "totaalBgkGedeclareerd": 1234.99,
+            "totaalBgkOntvangen": 750.20,
+            "debiteurenSaldo": 1113.47,
+            "hoofdsom": {
+                "timestamp": "2021-09-15",
+                "nu": 2000.0,
+                "potentieel": 150000.0
+            },
+            "totaalDoorbetaald": 1000.0,
+            "datumLastAct": "2020-02-06T15:49:49.564",
+            "datumLastBgkBetaling":"2020-03-06T15:49:49.564",
+            "datumLastDoorbetaald":"2020-02-06T15:49:49.564"
+        },
+        {
+            "caseId": 39226,
+            "medewerker": "B. Hooiveld",
+            "name": "blah",
+            "erkend": 0,
+            "type": "BET STD",
+            "referentie": "_(1)_@_(2)_RECHTSTREEKS_(3)_@_(4)_NIET ERKEND_///_(a)_@_(b)_@_(c)_@_(d)_@_(e)_@_(f)_@",
+            "zaaknummer": "20550495",
+            "nawWederpartij": null,
+            "totaalBgkGedeclareerd": null,
+            "totaalBgkOntvangen": null,
+            "debiteurenSaldo": 92.0,
+            "hoofdsom": null,
+            "totaalDoorbetaald": null,
+            "datumLastAct": "2020-02-04T14:22:54.739",
+            "datumLastBgkBetaling": null,
+            "datumLastDoorbetaald": null
+        },
+        {
+            "caseId": 36830,
+            "medewerker": "-",
+            "name": "blah",
+            "erkend": 0,
+            "type": "BET STD",
+            "referentie": "_(1)_@_(2)_RECHTSTREEKS_(3)_@_(4)_NIET ERKEND_///_(a)_@_(b)_@_(c)_@_(d)_@_(e)_@_(f)_@",
+            "zaaknummer": "20550626",
+            "nawWederpartij": null,
+            "totaalBgkGedeclareerd": null,
+            "totaalBgkOntvangen": null,
+            "debiteurenSaldo": 93.0,
+            "hoofdsom": null,
+            "totaalDoorbetaald": null,
+            "datumLastAct": null,
+            "datumLastBgkBetaling": null,
+            "datumLastDoorbetaald": null
+        },
+        {
+            "caseId": 60981,
+            "medewerker": "-",
+            "name": "blah",
+            "erkend": 100,
+            "type": "BET STD",
+            "referentie": "_(1)_@_(2)_LC_(3)_GCS_(4)_ERKEND_///_(a)_130_(b)_@_(c)_@_(d)_TS_(e)_@_(f)_@",
+            "zaaknummer": "15111732",
+            "nawWederpartij": {
+                "instantie": "FBTO, Zorg Verhaalszaken",
+                "naam": "van Dijk",
+                "plaats": "LEEUWARDEN  ",
+                "postbusAndOrPostcode": "Postbus 318 8901 BC  "
+            },
+            "totaalBgkGedeclareerd": null,
+            "totaalBgkOntvangen": null,
+            "debiteurenSaldo": 28919.64,
+            "hoofdsom": null,
+            "totaalDoorbetaald": null,
+            "datumLastAct": null,
+            "datumLastBgkBetaling": null,
+            "datumLastDoorbetaald": null
+        }
+     
+    ]
+}

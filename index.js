@@ -1,6 +1,6 @@
 const bodyparser = require('body-parser');
 
-const tableData = require('./tableData.json');
+const tableData = require('./bgk2.json');
 
 const express = require('express')
 const app = express()
@@ -13,8 +13,6 @@ app.get('/', (req, res) => {
 app.use(bodyparser.json());
 
 app.options('/case/overzicht-bgk', (req, res) => {
-  console.log('receiving OPTIONS req');
-  console.log(' OPTIONS headers', req.headers)
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -23,14 +21,9 @@ app.options('/case/overzicht-bgk', (req, res) => {
 
 
 app.post('/case/overzicht-bgk', (req, res) => {
-  console.log('body', req.body);
 
-  console.log('headers', req.headers)
-
-
-  const bgkData = getJson('bgk.json');
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.status(200).send(bgkData)
+  res.status(200).send(tableData)
 
 })
 
