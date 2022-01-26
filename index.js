@@ -32,7 +32,7 @@ app.options('/case/overzicht-bgk/count', (req, res) => {
 
 app.post('/case/overzicht-bgk/count', (req, res) => {
 
-
+  console.log('count called: '+tableData.content.length);
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.status(200).send({"folders":[1313],"totalSize":tableData.content.length})
 
