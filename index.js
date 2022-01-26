@@ -41,7 +41,7 @@ app.post('/case/overzicht-bgk/count', (req, res) => {
 app.post('/case/overzicht-bgk', (req, res) => {
   const i = req.body.chunkIndex;
   console.log(`index is ${i}`)
-  const n = 2;
+  const n = 100;
 
   res.setHeader('Access-Control-Allow-Origin', '*')
 
