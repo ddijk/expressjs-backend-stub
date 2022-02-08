@@ -14,14 +14,17 @@ def generate_word(min_len, max_len):
 def generate_numeric_fixed_length(length):
     return ''.join([str(random.randint(0,9)) for i in range(length) ])
 
+def generate_day_or_month(min, max):
+    return str(100+random.randint(min, max))[1:]
 
-def zaak(index):
+
+def zaak(case_id):
 
     zaak_nummer = generate_numeric_fixed_length(8)
     name = ' '.join([generate_word(5,10), zaak_nummer])
 
     return { 
-        'caseId': index, 
+        'caseId': case_id, 
         'name': name, 
         "medewerker": '-',
         "erkend": 0,
@@ -53,8 +56,23 @@ def zaak(index):
 
     }
 
-def add_zaak(lijst, index):
-    lijst.append(zaak(index))
+def generate_date():
+    return f'{random.randint(1995,2021)}-{generate_day_or_month(1,12)}-{generate_day_or_month(1,28)}'
+
+def last_date(case_id):
+    return {
+        'caseId' : case_id,
+        'datumLastContactClient' : generate_date(),
+        'datumLastContactWederpartij' : generate_date(),
+        'datumLastContactMedisch' : generate_date(),
+        'datumLastContactCustomCodes' : generate_date()
+    }
+
+def add_zaak(lijst, case_id):
+    lijst.append(zaak(case_id))
+
+def add_last_dates(lijst, case_id):
+    lijst.append(last_date(case_id))
 
 
 def main():
@@ -65,10 +83,16 @@ def main():
     n = int(sys.argv[1])
 
     zaken_lijst = []
-    for i in range(n):
-        add_zaak(zaken_lijst, i)
+    dates_lijst = []
+    for case_id in range(n):
+        add_zaak(zaken_lijst, case_id)
+        add_last_dates(dates_lijst, case_id)
 
-    print(json.dumps({'content': zaken_lijst}))
+    with open("bgk_generated.json", "w") as fh:
+       fh.write(json.dumps({'content': zaken_lijst}))
+
+    with open("latest_dates_generated.json","w") as file:
+        file.write(json.dumps(dates_lijst))
 
 if __name__ == '__main__':
     main()

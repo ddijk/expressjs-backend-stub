@@ -2,7 +2,7 @@ const bodyparser = require('body-parser');
 
 //const tableData = require('./bgk2.json');
 const tableData = require('./bgk_generated.json');
-const latestBookingsData = require('./latest_dates.json');
+const latestBookingsData = require('./latest_dates_generated.json');
 
 const express = require('express')
 const app = express()
@@ -75,7 +75,7 @@ app.post('/case/overzicht-bgk/latestBookings', (req, res) => {
   res.status(200).send({ "total_size": latestBookingsData.length, 
   "chunkIndex": i, 
   "chunkSize": n, 
-  "content": latestBookingsData.slice(n * i, n * (i + 1)).map(e=>{return {'caseId': e.caseId, 'datum': e.datum+'_'+postfix }}) });
+  "content": latestBookingsData.slice(n * i, n * (i + 1)).map(e=>{return {'caseId': e.caseId, 'datum': e[contactType]}}) });
 
 })
 
