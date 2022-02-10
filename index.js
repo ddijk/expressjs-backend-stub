@@ -7,7 +7,7 @@ const latestBookingsData = require('./latest_dates_generated.json');
 const express = require('express')
 const app = express()
 const port = 9000
-const n = 5;
+const n = 100;
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
