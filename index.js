@@ -42,7 +42,7 @@ app.post('/case/overzicht-bgk/count', (req, res) => {
 
   console.log('count called: ' + tableData.content.length);
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.status(200).send({ "folders": [1313], "totalSize": tableData.content.length })
+  res.status(200).send({ "folders": [1313], "totalSize": tableData.content.length, "defaultQueries": { "datumLastContactClient": ["015"], "datumLastContactCustomCodes": [], "datumLastContactMedisch": ["016"], "datumLastContactWederpartij": ["017", "018", "022", "023"] } })
 
 })
 
@@ -69,13 +69,10 @@ app.post('/case/overzicht-bgk/latestBookings', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
 
   // append uppercase letters from contactType
-  console.log(typeof(contactType))
-  const postfix = [...contactType].filter(e=>/[A-Z]/.test(e)).join('')
+  console.log(typeof (contactType))
+  const postfix = [...contactType].filter(e => /[A-Z]/.test(e)).join('')
 
-  res.status(200).send({ "total_size": latestBookingsData.length, 
-  "chunkIndex": i, 
-  "chunkSize": n, 
-  "content": latestBookingsData.slice(n * i, n * (i + 1)).map(e=>{return {'caseId': e.caseId, 'datum': e[contactType]}}) });
+  res.status(200).send(latestBookingsData.slice(n * i, n * (i + 1)).map(e => { return { 'caseId': e.caseId, 'datum': e[contactType] } }));
 
 })
 
