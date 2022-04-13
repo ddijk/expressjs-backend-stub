@@ -3,6 +3,7 @@ const bodyparser = require('body-parser');
 //const tableData = require('./bgk2.json');
 const tableData = require('./bgk_generated.json');
 const latestBookingsData = require('./latest_dates_generated.json');
+const urenData = require('./uren_getbysheetdate.json');
 
 const express = require('express')
 const app = express()
@@ -13,23 +14,32 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.use(bodyparser.json());
+// app.use(bodyparser.json());
+var jsonParser = bodyParser.json()
 
-app.options('/case/overzicht-bgk', (req, res) => {
+app.options('/case/overzicht-bgk', jsonParser, (req, res) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   res.sendStatus(200);
 })
 
-app.options('/case/overzicht-bgk/count', (req, res) => {
+app.options('/case/overzicht-bgk/count', jsonParser, (req, res) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   res.sendStatus(200);
 })
 
-app.options('/case/overzicht-bgk/latestBookings', (req, res) => {
+app.options('/case/overzicht-bgk/latestBookings', jsonParser, (req, res) => {
+  console.log('options latestbookings')
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.sendStatus(200);
+})
+app.options('/api/uren/getbysheetdate', jsonParser,(req, res) => {
+  console.log('options getbysheetdate')
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -37,8 +47,7 @@ app.options('/case/overzicht-bgk/latestBookings', (req, res) => {
 })
 
 
-
-app.post('/case/overzicht-bgk/count', (req, res) => {
+app.post('/case/overzicht-bgk/count', jsonParser, (req, res) => {
 
   console.log('count called: ' + tableData.content.length);
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -46,7 +55,7 @@ app.post('/case/overzicht-bgk/count', (req, res) => {
 
 })
 
-app.post('/case/overzicht-bgk', (req, res) => {
+app.post('/case/overzicht-bgk', jsonParser, (req, res) => {
   const i = req.body.chunkIndex;
   console.log(`index is ${i}`)
 
@@ -59,7 +68,7 @@ app.post('/case/overzicht-bgk', (req, res) => {
 })
 
 
-app.post('/case/overzicht-bgk/latestBookings', (req, res) => {
+app.post('/case/overzicht-bgk/latestBookings', jsonParser,(req, res) => {
   const contactType = String(req.body.contactType);
   const werkCodes = req.body.werkCodes;
   const praktijken = req.body.folders;
@@ -74,6 +83,17 @@ app.post('/case/overzicht-bgk/latestBookings', (req, res) => {
 
   res.status(200).send(latestBookingsData.slice(n * i, n * (i + 1)).map(e => { return { 'caseId': e.caseId, 'datum': e[contactType] } }));
 
+})
+
+// app.post('/api/uren/getbysheetdate', (req, res) => {
+app.post('/api/uren/getbysheetdate', bodyparser.raw({'type': 'application/json'}), (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // console.log('req',req);
+  console.log('===============')
+  console.log(JSON.stringify(req.headers));
+  // console.log(urenData)
+  res.status(200).send(urenData);
 })
 
 app.listen(port, () => {

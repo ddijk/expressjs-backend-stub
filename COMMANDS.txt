@@ -1,0 +1,1 @@
+curl -X POST -H 'Content-Type: text/plain' http://localhost:9000/api/uren/getbysheetdate?dossiernummer=16550347&company=9898&allBlocked=false&allLeads=false
