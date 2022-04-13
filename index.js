@@ -1,4 +1,4 @@
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 
 //const tableData = require('./bgk2.json');
 const tableData = require('./bgk_generated.json');
@@ -86,7 +86,7 @@ app.post('/case/overzicht-bgk/latestBookings', jsonParser,(req, res) => {
 })
 
 // app.post('/api/uren/getbysheetdate', (req, res) => {
-app.post('/api/uren/getbysheetdate', bodyparser.raw({'type': 'application/json'}), (req, res) => {
+app.post('/api/uren/getbysheetdate', bodyParser.raw({'type': 'application/json'}), (req, res) => {
 
   res.setHeader('Access-Control-Allow-Origin', '*')
   // console.log('req',req);
