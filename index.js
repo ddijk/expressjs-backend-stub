@@ -39,14 +39,14 @@ app.options('/case/overzicht-bgk/latestBookings', jsonParser, (req, res) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   res.sendStatus(200);
 })
-app.options('/api/uren/getbysheetdate', jsonParser,(req, res) => {
+app.options('/api/uren/getbysheetdate', jsonParser, (req, res) => {
   console.log('options getbysheetdate')
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   res.sendStatus(200);
 })
-app.options('/api/declaration', jsonParser,(req, res) => {
+app.options('/api/declaration', jsonParser, (req, res) => {
   console.log('options declaration')
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -76,7 +76,7 @@ app.post('/case/overzicht-bgk', jsonParser, (req, res) => {
 })
 
 
-app.post('/case/overzicht-bgk/latestBookings', jsonParser,(req, res) => {
+app.post('/case/overzicht-bgk/latestBookings', jsonParser, (req, res) => {
   const contactType = String(req.body.contactType);
   const werkCodes = req.body.werkCodes;
   const praktijken = req.body.folders;
@@ -93,17 +93,69 @@ app.post('/case/overzicht-bgk/latestBookings', jsonParser,(req, res) => {
 
 })
 
-app.post('/api/uren/getbysheetdate', bodyParser.raw({'type': 'application/json'}), (req, res) => {
+app.post('/api/uren/getbysheetdate', bodyParser.raw({ 'type': 'application/json' }), (req, res) => {
 
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.status(200).send(urenData);
 })
-app.get('/api/declaration', bodyParser.raw({'type': 'application/json'}), (req, res) => {
+app.get('/api/declaration', bodyParser.raw({ 'type': 'application/json' }), (req, res) => {
 
   console.log('api declr')
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.status(200).send(declarationData);
 })
+
+app.get('/api/advobot/archivelead', bodyParser.raw({ 'type': 'application/json' }), (req, res) => {
+
+  console.log(`param id: ${req.query['id']}`);
+  console.log(`params archive: ${req.query['archive']}`);
+  console.log('Adducere, archive lead')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.sendStatus(200);
+})
+
+app.options('/api/declaratie-ruimte', (req, res) => {
+
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  console.log('api declr-ruimte');
+  res.sendStatus(200)
+})
+app.get('/api/declaratie-ruimte', (req, res) => {
+
+  console.log('api declr-ruimte');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.status(200).send(declarationRuimte);
+})
+
+app.get('/api/comment', (req, res) => {
+  console.log(`param id: ${req.query['caseId']}`);
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001')
+  let val = null
+  switch (Number(req.query['caseId'])) {
+    case 1:
+      console.log(`a param id: ${req.query['caseId']}`);
+      val = { caseId: 1, text: 'hallo' }
+      break;
+    case 4801:
+      console.log(`b param id: ${req.query['caseId']}`);
+      val = { caseId: 4801, text: 'bonjour' }
+      break;
+    case 4802:
+      console.log(`c param id: ${req.query['caseId']}`);
+      val = { caseId: 4802, text: 'ciao' }
+      break;
+    default:
+      console.log(`d param id: ${req.query['caseId']}`);
+      val = { caseId: 1, text: 'def' }
+
+  }
+  console.log(`r param id: ${req.query['caseId']}`);
+  res.status(200).send(val);
+
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
